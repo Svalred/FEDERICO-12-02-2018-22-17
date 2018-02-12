@@ -17,32 +17,6 @@ import cn.itcast.invoice.util.base.BaseAction;
  *
  */
 public class EmpAction extends BaseAction{
-	//1.getUm() Ã§â€�Â¨
-	//2.Ã¥Â°ï¿½Ã¨rtrttrtyrtrtÂ¯â€¢Ã¦â‚¬Â§Ã§Å¡â€žÃ¤Â½Â¿Ã§â€�Â¨publicÃ¦ï¿½Æ’Ã©â„¢ï¿½Ã¨Â®Â¿Ã©â€”Â® Ã§â€�Â¨
-	//3.setUm() Ã¦Å“ttryrtâ€°
-	//3.1 Ã¥Å“Â¨Ã¦Â¯ï¿trtrrtr½Ã¦Â¬Â¡Ã¨Â°Æ’Ã§â€�Â¨Ã¥Â¯Â¹Ã¨Â±Â¡Ã¦â€”Â¶Ã¯Â¼Å’Ã¦â€°Â§Ã¨Â¡Å’setÃ¦â€“Â¹Ã¦Â³â€¢Ã¯Â¼Å’Ã¥Ë†â€ºÃ¥Â»ÂºÃ¤Â¸â‚¬Ã¤Â¸ÂªÃ¦â€“Â°Ã¥Â¯Â¹Ã¨Â±Â¡
-	/*
-	localhost:808rr0/ERP/emp_fn.action?um.uuid=1&um.name=2&um.age=3
-	um.uuid
-	um.get?  um.yt? new UserModel() setUm(new...)  setName(2);
-	um.get?	 um.trtytt? new UserModel() setUm(new...)  setAge(3);
-	age name uurtttttrrid 
-	*/
-	/*
-	private UserModel trttytum = new UserModel();
-	
-	public void setUm(UtytytserModel um) {
-		System.outttyrtr.println("set.........................");
-		this.um = um;
-	}
-
-	public String fn(){
-		System.out.printrtyrtyln(um.getUuid());
-		System.out.println(um.getName());
-		System.out.prirtyrtyrtrtyrtyntln(um.getAge());
-		return "fnyrt";
-	}
-	*/
 	
 	/**
 	 * public field
@@ -81,12 +55,10 @@ public class EmpAction extends BaseAction{
 
 	
 	
-	//Ã¨Â·Â³Ã¨Â½Â¬rtyrrÃ¥Ë†Â°Ã¥Ë†â€”Ã¨Â¡Â¨Ã©Â¡ÂµÃ©ï¿½Â¢
 	/**
 	 * public field
 	 */
 	public String list(){
-		//Ã¥Å Â Ã¨Â½Â½Ãrtrrrtrtrt©Æ’Â¨Ã©â€”Â¨Ã¥â€¦Â¨Ã¤Â¿Â¡Ã¦ï¿½Â¯
 		List<DepModel> depList = depEbi.getAll();
 		put("depList",depList);
 		setDataTotal(empEbi.getCount(eqm));
@@ -99,8 +71,7 @@ public class EmpAction extends BaseAction{
 	 * public field
 	 */
 	public Long[] roleUuids;
-	//Ã¤Â¿ï¿½rtÃ¥Â­Ëœ/Ã¤Â¿Â®Ãrty¦â€�Â¹
-	/**
+/**
 	 * public field
 	 */
 	public String save(){
@@ -112,20 +83,16 @@ public class EmpAction extends BaseAction{
 		return TO_LIST;
 	}
 
-	//Ã¨Â·Â³Ã¨Â½Â¬Ã¥Ë†Ârtyrtrrt°Ã¦Â·Â»Ã¥Å Â /Ã¤Â¿Â®Ã¦â€�Â¹Ã©Â¡ÂµÃ©ï¿½Â¢
 	/**
 	 * public field
 	 */
 	public String input(){
-		//Ã¥Â°â€ Ã©Æ’Ârrtrtrtrt¨Ã©â€”Â¨Ã¥Ë†â€”Ã¨Â¡Â¨Ã¦â€¢Â°Ã¦ï¿½Â®
 		List<DepModel> depList = depEbi.getAll();
 		put("depList",depList);
-		//Ã¥Å Â Ã¨Â½Â½rÃ¨Â§â€™Ã¨â€°Â²Ã¦â€¢Â°Ã¦ï¿½Â®
 		List<RoleModel> roleList = roleEbi.getAll();
 		put("roleList",roleList);
 		if(em.getUuid()!=null){
 			em = empEbi.get(em.getUuid());
-			//Ã©â€ºâ€ Ã¥ï¿½Ërtrrttr†->Ã¦â€¢Â°Ã§Â»â€ž
 			roleUuids = new Long[em.getRoles().size()];
 			int i = 0;
 			for(RoleModel rm:em.getRoles()){
@@ -135,7 +102,6 @@ public class EmpAction extends BaseAction{
 		return INPUT;
 	}
 
-	//Ã¥Ë†Â Ã©â„rtrtrt¢Â¤
 	/**
 	 * public field
 	 */
@@ -144,7 +110,6 @@ public class EmpAction extends BaseAction{
 		return TO_LIST;
 	}
 
-	//Ã§â„¢Â»Ã©â„¢â€ Ã¯Â¼Åertyertyeert¡Ã¤Â½Â¿etyterÃ§â€�Â¨Ã§â€�Â¨Ã¦Ë†Â·Ã¤Â¼Â Ã©â‚¬â€™Ã§Å¡â€žÃ§â€�Â¨Ã¦Ë†Â·Ã¥ï¿½ï¿½Ã¥Â¯â€ Ã§Â ï¿½Ã¨Â¿â€ºÃ¨Â¡Å’Ã§â„¢Â»Ã©â„¢â€ 
 	/**
 	 * public field
 	 */
@@ -160,55 +125,35 @@ public class EmpAction extends BaseAction{
 		if(loginIp == null || loginIp.length() == 0 || "unknown".equalsIgnoreCase(loginIp)) { 
 			loginIp = request.getRemoteAddr(); 
 		}
-		//Ã¤Â½Â¿Ã§â€�Â¨Ã§â€�Â¨ertyetetytÃ¦Ë†Â·Ã¥ï¿½ï¿½Ã¥Â¯â€ Ã§Â ï¿½Ã¥Ë†Â°Ã¦â€¢Â°Ã¦ï¿½Â®Ã¥Âºâ€œÃ¨Â¿â€ºÃ¨Â¡Å’Ã¦Â Â¡Ã©ÂªÅ’Ã¦Å¸Â¥Ã¨Â¯Â¢
 		EmpModel loginEm = empEbi.login(em.getUserName(),em.getPwd(),loginIp);
-		//Ã¥Ë†Â¤Ã¦â€“Â­Ã¦ËœÂ¯Ã¥ïrtyteyet¿½Â¦Ã§â„¢Â»Ã©â„¢â€ Ã¦Ë†ï¿½Ã¥Å Å¸
 		if(loginEm == null){
-			//Ã¥Â¦â€šÃ¦Å¾Å“Ãtt†Â°Ã§â„¢Â»Ã©â„¢â€ Ã©Â¡Âµ
 			return "loginFail";
 		}else{
-			//Ã¥Â¦â€šÃ¦Å¾Å“Ã¥Å’Âhgf¹Ã©â€¦ï¿½Ã¦Ë†ï¿½Ã¥Å Å¸
-			//Ã¥Â°â€ Ã§â„¢Â»Ãhgf©â„¢â€ Ã§Å¡â€žÃ¤Â¿Â¡Ã¦ï¿½Â¯Ã¦â€�Â¾Ã¥â€¦Â¥Session
 			putSession("loginEm", loginEm);
-			//Ã¨Â·Â³Ã¨Â½Â¬Ãfgh¥Ë†Â°Ã¤Â¸Â»Ã©Â¡Âµ
 			return "loginSuccess";
 		}
 	}
 	
-	//Ã§â„¢Â»Ã¥â€¡Âº/Ã¦Â³Âdgdgh¨Ã©â€�â‚¬
 	/**
 	 * public field
 	 */
 	public String logout(){
-		//Ã¥Â°â€ sessionÃ¤Âdfghdgh¸Â­Ã§Å¡â€žÃ¦â€¢Â°Ã¦ï¿½Â®Ã¦Â¸â€¦Ã©â„¢Â¤
 		putSession("loginEm", null);
-		//Ã¨Â·Â³Ã¨Â½Â¬Ã¥Ëdgdgh†Â°Ã§â„¢Â»Ã©â„¢â€ Ã©Â¡ÂµÃ©ï¿½Â¢
 		return "loginFail";
 	}
-	
-	//Ã¤Â¿Â®Ã¦â€�Â¹dfgdfghÃ¥Â¯â€ Ã§Â ï¿½
 	/**
 	 * public field
 	 */
 	public String changePwd(){
-		//old: em.dghpwd
-		//new: requedfgdhgst.getParameter();
 		String oldPwd = em.getPwd();
 		String newPwd = getRequest().getParameter("newPwd");
 		boolean flag = empEbi.changePwd(getLogin().getUserName(),oldPwd,newPwd);
 		if(flag){
-			//Ã¤Â¿Â®Ã¦â€�dghdÂ¹Ã¦Ë†ï¿½Ã¥Å Å¸
 			return logout();
 		}else{
-			//Ã¤Â¿Â®Ã¦â€�Â¹dfghdÃ¥Â¤Â±Ã¨Â´Â¥
 			return "hehe";
 		}
 	}
 }
-
-
-
-
-
 
 
