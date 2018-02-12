@@ -51,7 +51,7 @@ public class GoodsTypeAction extends BaseAction{
 		this.goodsTypeEbi = goodsTypeEbi;
 	}
 
-	//Ã¨Â·Â³Ã¨Â½ÂrtrtÃ¥Ë†â€”Ã¨Â¡Â¨Ã©Â¡ÂµÃ©ï¿½Â¢
+	
 	/**
 	 * this public element is a public element
 	 *
@@ -63,7 +63,6 @@ public class GoodsTypeAction extends BaseAction{
 		return LIST;
 	}
 
-	//Ã¤Â¿ïrtuytrutyÃ¥Â­Ëœ/Ã¤Â¿Â®Ã¦â€�Â¹
 	/**
 	 * this public element is a public element
 	 *
@@ -77,13 +76,11 @@ public class GoodsTypeAction extends BaseAction{
 		return TO_LIST;
 	}
 
-	//Ã¨Â·Â³ÃtyuytutyÂ·Â»Ã¥Å Â /Ã¤Â¿Â®Ã¦â€�Â¹Ã©Â¡ÂµÃ©ï¿½Â¢
 	/**
 	 * this public element is a public element
 	 *
 	 */
 	public String input(){
-		//Ã¥Å Â Ã¨Â½Â½Ã¤ÂtyuytutyºÃ¥Âºâ€�Ã¥â€¢â€ Ãtyuty¤Â¿Â¡Ã¦ï¿½Â¯Ã¥Ë†â€”Ã¨Â¡Â¨
 		List<SupplierModel> supplierList = supplierEbi.getAll();
 		put("supplierList",supplierList);
 		if(gm.getUuid()!=null){
@@ -92,7 +89,6 @@ public class GoodsTypeAction extends BaseAction{
 		return INPUT;
 	}
 
-	//Ã¥Ë†Â Ãtyuyttyu©â„¢Â¤
 	/**
 	 * this public element is a public element
 	 *
@@ -102,7 +98,6 @@ public class GoodsTypeAction extends BaseAction{
 		return TO_LIST;
 	}
 	
-	//--ajatyuytrx---------------------------------------------
 	/**
 	 * this public element is a public element
 	 *
@@ -123,17 +118,7 @@ public class GoodsTypeAction extends BaseAction{
 	 *
 	 */
 	public String ajaxGetGtmBySupplier(){
-		//Ã¦Â Â¹turytrurÃ¦ï¿½Â®Ã¤Â¾â€ºÃ¥Âºâ€�Ã¥â€¢â€ Ã§Å¡â€žuuidÃ¨Å½Â·Ã¥ï¿½â€“Ã¥Â¯Â¹Ã¥Âºâ€�Ã§Å¡â€žÃ¦â€°â‚¬Ã¦Å“â€°Ã¥â€¢â€ Ã¥â€œï¿½Ã§Â±Â»Ã¥Ë†Â«Ã¤Â¿Â¡Ã¦ï¿½Â¯
 		gtmList = goodsTypeEbi.getAllBySupplier(supplierUuid);
-		//Ã¥Â°â€ Ã¦rtuyyruâ€¢Â°Ã¦ï¿½Â®Ã¤Â¼Â Ã©â‚¬â€™Ã¥Ë†Â°Ã©Â¡ÂµÃ©ï¿½Â¢,jsonÃ¦Â Â¼Ã¥Â¼ï¿½
-		//Ã¥Â¦â€šÃ¤Ârurtuytr½â€¢Ã¥Â°â€ Ã¦â€¢Â°Ã¦ï¿½Â®Ã¨Â½Â¬Ã¦ï¿½Â¢Ã¤Â¸ÂºjsonÃ¦Â Â¼Ã¥Â¼ï¿½Ã¯Â¼Å¸Ã¯Â¼Ë†Ã¤Â½Â¿Ã§â€�Â¨struts2-json-plugin-2.3.7.jarÃ¥Â®Å’Ã¦Ë†ï¿½)
-		//Ã¥Â°â€ Ã¥Â¯uryyrrÂ¹Ã¥Âºâ€�ActionÃ§Â±Â»Ã¤Â¸Â­Ã¦â€°â‚¬Ã¦Å“â€°getÃ¥Â¼â‚¬Ã¥Â¤Â´Ã§Å¡â€žÃ¦â€“Â¹Ã¦Â³â€¢Ã¥Â¯Â¹Ã¥Âºâ€�Ã§Å¡â€žÃ¦â€¢Â°Ã¦ï¿½Â®Ã¯Â¼Å’Ã¨Â½Â¬Ã¦ï¿½Â¢Ã¤Â¸ÂºjsonÃ¦Â Â¼Ã¥Â¼ï¿½Ã¯Â¼Å’jsonÃ¥Â±Å¾Ã¦â‚¬Â§Ã¥ï¿½ï¿½Ã¤Â¸ÂºgetÃ¦â€“Â¹Ã¦Â³â€¢Ã§Å¡â€žÃ¥ï¿½ï¿½Ã§Â§Â°(Ã¤Â¸ï¿½Ã¥Å’â€¦Ã¥ï¿½Â«get)
 		return "ajaxGetGtmBySupplier";
 	}
-	/*
-	//{"abc"rturt:"heihei"}
-	public String getAbc(){
-		return "heihei";
-	}
-	*/
 }
