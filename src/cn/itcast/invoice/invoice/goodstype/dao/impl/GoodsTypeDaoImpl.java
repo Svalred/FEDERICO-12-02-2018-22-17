@@ -16,7 +16,6 @@ import cn.itcast.invoice.util.base.BaseQueryModel;
 public class GoodsTypeDaoImpl extends BaseDaoImpl<GoodsTypeModel> implements GoodsTypeDao{
 	public void doQbc(DetachedCriteria dc,BaseQueryModel qm){
 		GoodsTypeQueryModel gqm = (GoodsTypeQueryModel) qm;
-		//TODO 添加自定义查询规则
 	}
 
 	public List<GoodsTypeModel> getAllBySupUuid(Long supplierUuid) {
