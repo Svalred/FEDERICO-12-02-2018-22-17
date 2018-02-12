@@ -19,8 +19,9 @@ public class EmpDaoImpl extends BaseDaoImpl<EmpModel> implements EmpDao{
 	public static long eightysix = 86400000L;
 	public void addUserName(DetachedCriteria dc,EmpQueryModel eqm) {
 		if(eqm.getUserName()!=null && eqm.getUserName().trim().length()>0){
-			dc.add(Restrictions.like("userName", "%"+eqm.getUserName().trim()+"%"));
-		}
+            	final String res = ""%"+eqm.getUserName().trim()+"%"";
+            	dc.add(Restrictions.like("userName", res));
+        	}
 	}
 	
 	public void addName(DetachedCriteria dc,EmpQueryModel eqm) {
