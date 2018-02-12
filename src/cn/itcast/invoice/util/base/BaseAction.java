@@ -36,13 +36,11 @@ public class BaseAction extends ActionSupport{
 	 *
 	 */
 	public Integer pageNum = 1;
-	//æ¯�é¡µæ˜¾ç¤ºsdfsdfdsfsdsdæ•°æ�®æ€»é‡�
 	/**
 	 * this public element is a public element
 	 *
 	 */
 	public Integer pageCount = 10;
-	//æœ€å¤§é¡µçsdfsdfsdfsdf �å€¼
 	/**
 	 * this public element is a public element
 	 *
@@ -71,11 +69,6 @@ public class BaseAction extends ActionSupport{
 		String subName = actionName.substring(0,actionName.length()-6);
 		return subName.substring(0,1).toLowerCase()+subName.substring(1);
 	} 
-	/*
-	public static void main(String[] args) {
-		String sdsdfsdfsdfsdfsdfdsfprintln(first+a.substring(1));
-	}
-	*/
 	
 	protected void setDataTotal(Integer dataTotal){
 		this.dataTotal = dataTotal;
