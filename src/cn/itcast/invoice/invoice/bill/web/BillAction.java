@@ -48,25 +48,10 @@ public class BillAction extends BaseAction{
 	 *
 	 */
 	public String buyBill(){
-		/*
-		select 
-			sdfgdfgdum(od.num)
-		from 
-			dfgdfdfg
-			od.goodsUuid = g.uuid
-		group bydfdg
-			od.goodsUuid 
-		*/
-		//Ã¨Å½Â·Ã¥ï¿½â€“Ã©â€¡sdfgsdfgâ€¡Ã¨Â´Â­Ã¦Å Â¥Ã¨Â¡Â¨Ã¦â€¢Â°Ã¦ï¿½Â®
+		
 		List<Object[]> billList = billEbi.getBillByGoods(bqm);
-		/*
-		for(Object[] obsdfgdg= (Long) objs[1];
-			System.out.println(temp.getName()+","+sum);
-			System.out.println("------------------");
-		}
-		*/
+		
 		put("billList",billList);
-		//Ã¥Å Â Ã¨Â½Â½Ã¦â€°â‚¬Ã¦Å“â€°Ã¤Â¾â€ºÃ¥Âºâ€�Ã¥â€¢â€ Ã¦â€¢Â°Ã¦ï¿½Â®
 		List<SupplierModel> supplierList = supplierEbi.getAll();
 		put("supplierList",supplierList);
 		return "buyBill";
@@ -87,45 +72,29 @@ public class BillAction extends BaseAction{
 		odmList = billEbi.getBillDetailByGoods(bqm);
 		return "ajaxBillDetailByGoods";
 	}
-	//Ã¨Å½Â·Ãdfghd¥ï¿½â€“Ã©Â¥Â¼Ã¥â€ºÂ¾
 	/**
 	 * this public element is a public element
 	 *
 	 */
 	public void billForPie() throws IOException{
-		//1.Ã¨Å½Â·ÃfghfgfhgfÃ¥Ë†Â°Ã¥ï¿½Å½Ã¥ïfgfµï¿½Ã¥Â¯Â¹Ã¨Â±Â¡Ã¯Â¼Å’Ã¥Å“Â¨Ã¥ï¿½Å½Ã¥ï¿½Â°Ã¥Â®Å’Ã¦Ë†ï¿½jfreechartÃ¥Â¯Â¹Ã¨Â±Â¡Ã¨Â½Â¬Ã¥â€¦Â¥Ã¦Âµï¿½Ã§Å¡â€žÃ¦â€œï¿½Ã¤Â½Å“
-		//Ã¥â€¡â€ Ã¥Â¤â€¡Ã¦â€¢Â°Ã¦ï¿½Â®bqm->list
 		List<Object[]> billList = billEbi.getBillByGoods(bqm);
-		//Ã¥â€¡â€ Ã¥Â¤â€¡Ãfg½Ã¥Â¯Â¹Ã¨Â±Â¡
 		OutputStream os = getResponse().getOutputStream();
-		//Ã¤Â¼Â Ã©â‚¬â€™Ã¥Ë†Â°Ã¥ïfghfgÃ¯Â¼Å’Ã¥Â°â€ jfreechartÃ¨Â½Â¬Ã¦ï¿½Â¢Ã¥Ë†Â°Ã¦Âµï¿½Ã¤Â¸Â­
 		billEbi.getBillForPie(os,billList);
-		//Ã¥Ë†Â·Ã¦â€“Â°Ã¦Âµï¿½Ã¯Â¼Åfhfhfghh’ï¿½Ã©â‚¬ï¿½Ã¥â€ºÅ¾Ã©Â¡ÂµÃ©ï¿½Â¢
 		os.flush();
 	}
-	//Ã¤Â¸â€¹Ã¨Â½Â½fhgh Â¥Ã¨Â¡Â¨
 	private InputStream downloadExcel;
-	/**
-	 * this public element is a public element
-	 *
-	 */
+	
 	public InputStream getDownloadExcel() {
 		return downloadExcel;
 	}
 	private String xlsName;
-	/**
-	 * this public element is a public element
-	 *
-	 */
+	
 	public String getXlsName() throws UnsupportedEncodingException {
 		System.out.println(xlsName);
 		return new String(xlsName.getBytes("UTF-8"),"ISO8859-1");
 	}
 
-	/**
-	 * this public element is a public element
-	 *
-	 */
+	
 	public String downloadExcelBill() throws Exception{
 		xlsName = "Ã¨Â´Â§Ã§â€°Â©Ã§Â»Å¸Ã¨Â®Â¡Ã¦Å Â¥Ã¨Â¡Â¨Ã¯Â¼Â»"+FormatUtil.formatDate(System.currentTimeMillis())+"Ã¯Â¼Â½.xls";
 		List<Object[]> billList = billEbi.getBillByGoods(bqm);
