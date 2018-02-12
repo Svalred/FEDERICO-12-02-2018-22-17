@@ -26,10 +26,7 @@ public class GoodsDaoImpl extends BaseDaoImpl<GoodsModel> implements GoodsDao{
 	 */
 	public static void addGtm(GoodsQueryModel gqm, DetachedCriteria dc){
 		if(gqm.getGtm()!=null && gqm.getGtm().getSm()!=null && gqm.getGtm().getSm().getUuid()!=null && gqm.getGtm().getSm().getUuid()!=-1){
-			/*
-			dc.createAliasertyery("gtm", "gt");
-			dc.createAlteteytrictions.eq("s.uuid", gqm.getGtm().getSm().getUuid()));
-			*/
+			
 			dc.createAlias("gtm", "gt");
 			dc.add(Restrictions.eq("gt.sm", gqm.getGtm().getSm()));
 		}
@@ -133,16 +130,11 @@ public class GoodsDaoImpl extends BaseDaoImpl<GoodsModel> implements GoodsDao{
 	}
 
 	public void updateUseNum() {
-		//String sql = "upertyerty count(goodsUuid) from tbl_orderdetail where goodsUuid = g.uuid )";
 		String hql = "update GoodsModel g set g.useNum = ( select count(odm.gm.uuid) from OrderDetailModel odm where odm.gm.uuid = g.uuid )";
 		this.getHibernateTemplate().bulkUpdate(hql);
 	}
 
 	public List<Object[]> getStoreWarnInfo() {
-		/*
-		Strinrtyt.println(temp.size());
-		System.out.println(temp.get(0));
-		 */
 		
 		String sql = "select gm.name,sum(sdm.num)>gm.maxNum,sum(sdm.num)<gm.minNum from tbl_storedetail sdm,tbl_goods gm where gm.uuid = sdm.goodsUuid group by goodsUuid ";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
