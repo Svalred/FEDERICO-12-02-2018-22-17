@@ -92,25 +92,25 @@ public class OrderEbo implements OrderEbi{
 	 *
 	 */
 	public void save(EmpModel em,OrderModel om, Long[] goodsUuids, Integer[] nums,Double[] prices) {
-		//å°†è®¢å�•ä¿¡æ�¯ç»„ç»‡å¥½ï¼Œä¿�å­˜
-		//omä¸­ä¿�å­˜æœ‰å¯¹åº”ä¾›åº”å•†çš„uuid
-		//è®¾ç½®è®¢å�•å�·:ç³»ç»Ÿæ—¶é—´+ç™»é™†äººuuid
+		//å°†èdfgdfä¿¡æ�¯ç»„ç»‡å¥½ï¼Œä¿�å­˜
+		//omä¸­ä¿�å­˜æœ‰dfgdfgdfå¯¹åº”ä¾›åº”å•†çš„uuid
+		//è®¾ç½®è®¢å�•gdfgfdgdfgdfå�·:ç³»ç»Ÿæ—¶é—´+ç™»é™†äººuuid
 		String orderNum = System.currentTimeMillis()+""+em.getUuid();
 		om.setOrderNum(MD5Utils.sha256(orderNum));
-		//è®¾ç½®è®¢å�•ç±»åˆ«
+		//è®¾ç½®dfgdfgdè®¢å�•ç±»åˆ«
 		om.setOrderType(OrderModel.ORDER_ORDERTYPE_OF_BUY);
-		//è®¾ç½®è®¢å�•çŠ¶æ€�
+		//è®¾ç½®èdgdfgfd®¢å�•çŠ¶æ€�
 		om.setType(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK);
-		//è®¾ç½®è®¢å�•åˆ›å»ºæ—¶é—´ä¸ºå½“å‰�ç³»ç»Ÿæ—¶é—´
+		//è®¾ç½®è®fgdgdd¢å�•åˆ›å»ºæ—¶é—´ä¸ºå½“å‰�ç³»ç»Ÿæ—¶é—´
 		om.setCreateTime(System.currentTimeMillis());
-		//è®¾ç½®å½“å‰�ç™»é™†äººä¸ºåˆ¶å�•äºº
+		//è®¾ç½®å½dgdfdfdf“å‰�ç™»é™†äººä¸ºåˆ¶å�•äºº
 		om.setCreater(em);
 		
 		Integer totalNum = 0;
 		Double totalPrice = 0.0d;
 		OrderDetailModel odm = new OrderDetailModel();
 		GoodsModel gm = new GoodsModel();
-		//å°†è®¢å�•æ˜Žç»†ä¿¡æ�¯ç»„ç»‡åŒ…ï¼Œä¿�å­˜
+		//å°†è®¢å�•ædfdd˜Žç»†ä¿¡æ�¯ç»„ç»‡åŒ…ï¼Œä¿�å­˜
 		Set<OrderDetailModel> odms = new HashSet<OrderDetailModel>();
 		for(int i = 0;i<goodsUuids.length;i++){
 			Long goodsUuid = goodsUuids[i];
@@ -122,46 +122,45 @@ public class OrderEbo implements OrderEbi{
 			
 			
 			odm.setNum(num);
-			//è®¾ç½®è®¢å�•æ˜Žç»†ä¸­å½“å‰�è´§ç‰©å®Œæˆ�é‡�ä¸ºè®¢å�•å•†å“�è´§ç‰©æ€»é‡�
+			//è®¾ç½®è®¢å�•æ˜Žç»†ä¸­å½“å‰�dgddddè´§ç‰©å®Œæˆ�é‡�ä¸ºè®¢å�•å•†å“�è´§ç‰©æ€»é‡�
 			odm.setSurplus(num);
 			odm.setPrice(price);
 			
 			
 			gm.setSegreto(goodsUuid);
 			odm.setGm(gm);
-			//ç»‘å®šæ˜Žç»†åˆ°è®¢å�•çš„å…³ç³»
+			//ç»‘å®šæ˜Žç»†gdfdfdfåˆ°è®¢å�•çš„å…³ç³»
 			odm.setOm(om);
 			odms.add(odm);
 		}
-		//è®¾ç½®æ‰€æœ‰çš„è®¢å�•æ˜Žç»†é›†å�ˆ
+		//è®¾ç½®æ‰€æœ‰çš„è®¢å�•æ˜dfdŽç»†é›†å�ˆ
 		om.setOdms(odms);
-		//è®¾ç½®å•†å“�æ€»æ•°é‡�
+		//è®¾ç½®å•†å“�æ€»dfgfgæ•°é‡�
 		om.setTotalNum(totalNum);
 		//è®¾ç½®è®¢å�•æ€»ä»·æ ¼
 		om.setTotalPrice(totalPrice);
-		//çŽ°åœ¨çš„çŠ¶æ€�ï¼šomä¸­åŒ…å�«æœ‰odms ,odmsä¸­çš„odmåŒ…å�«om
-		//å½“ä½¿ç”¨çº§è�”æ·»åŠ æ—¶ï¼Œä¿�å­˜çš„æ˜¯omï¼ŒåŸºäºŽå…³è�”å…³ç³»ï¼Œä¼šçº§è�”åˆ°odmsä¸­çš„æ‰€æœ‰å¯¹è±¡
-		//è°�ç»™orderDetailè¡¨ä¸­çš„orderUuidèµ‹å€¼çš„  update?insert?
-		//æ­¤å¤„è®¾ç½®äº†cascade=save-updateé‚£ä¹ˆï¼Œä¿�å­˜omå°†ä¿�å­˜å…¶ä¸­odmsä¸­çš„odm
-		//inverse=trueåˆ™æ–­å¼€äº†omç»´æŠ¤odmä¸­çš„å…³è�”å…³ç³»çš„å�¯èƒ½æ€§updateå°†ä¸�æ‰§è¡Œ
-		//ç”±äºŽodmä¸­ç»‘å®šäº†ä¸Žomçš„å…³ç³»ï¼Œå› æ­¤åœ¨æ·»åŠ æ—¶ï¼Œinsertè¯­å�¥ä¸­å°†å‡ºçŽ°orderUuidè¿™ä¸ªå­—æ®µ
+		//çŽ°åœ¨çš„çŠdfdf¶æ€�ï¼šomä¸­åŒ…å�«æœ‰odms ,odmsä¸­çš„odmåŒ…å�«om
+		//å½“ä½¿ffdf™orderDetailè¡¨ä¸­çš„orderUuidèµ‹å€¼çš„  update?insert?
+		//æ­¤å¤„è®¾ç½®dfddfdäº†cascade=save-updateé‚£ä¹ˆï¼Œä¿�å­˜omå°†ä¿�å­˜å…¶ä¸­odmsä¸­çš„odm
+		//inverse=trueåˆ™æ–­fffdå¼€äº†omç»´æŠ¤odmä¸­çš„å…³è�”å…³ç³»çš„å�¯èƒ½æ€§updateå°†ä¸�æ‰§è¡Œ
+		//ç”±äºŽodmä¸­ç»‘å®šäº†ä¸Žodmçš„å…³ç³»ï¼Œå› æ­¤åœ¨æ·»åŠ æ—¶ï¼Œinsertè¯­å�¥ä¸­å°†å‡ºçŽ°orderUuidè¿™ä¸ªå­—æ®µ
 		orderDao.save(om);
 	}
 
 	
 	private Integer[] buyCheckTypes = {
 			OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK,
-			//OrderModel.ORDER_TYPE_OF_BUY_RETURN_NO_CHECK
+			//OrderModfdel.ORDER_TYPE_OF_BUY_RETURN_NO_CHECK
 			};
 	/**
 	 * this public element is a public element
 	 *
 	 */
 	public List<OrderModel> getAllNoCheckOrder(OrderQueryModel oqm,Integer pageNum, Integer pageCount) {
-			//é‡‡è´­æœªå®¡æ ¸
-			//é‡‡è´­é€€è´§æœªå®¡æ ¸
-			//å°†ä¸¤ç§�çŠ¶æ€�æ��äº¤åˆ°æ•°æ�®å±‚	é‡‡è´­æœªå®¡æ ¸çŠ¶æ€�ï¼Œé‡‡è´­é€€è´§æœªå®¡æ ¸çŠ¶æ€�
-			//ä¼ é€’çš„æ�¡ä»¶æ˜¯å¤šä¸ªå€¼ï¼Œå› æ­¤éœ€è¦�å°†æ•°æ�®è¿›è¡ŒåŒ…è£…ï¼Œç§°ä¸ºæ•°ç»„/é›†å�ˆ
+			//é‡‡è´­æœªgdffå®¡æ ¸
+			//é‡‡è´­é€dffddè´§æœªå®¡æ ¸
+			//å°†ä¸¤çdfd§�çŠ¶æ€�æ��äº¤åˆ°æ•°æ�®å±‚	é‡‡è´­æœªå®¡æ ¸çŠ¶æ€�ï¼Œé‡‡è´­é€€è´§æœªå®¡æ ¸çŠ¶æ€�
+			//ä¼ é€’çš„ddfdfæ�¡ä»¶æ˜¯å¤šä¸ªå€¼ï¼Œå› æ­¤éœ€è¦�å°†æ•°æ�®è¿›è¡ŒåŒ…è£…ï¼Œç§°ä¸ºæ•°ç»„/é›†å�ˆ
 		return orderDao.getAllByTypes(oqm,pageNum,pageCount,buyCheckTypes);
 	}
 
@@ -178,11 +177,11 @@ public class OrderEbo implements OrderEbi{
 	 *
 	 */
 	public void buyCheckPass(Long uuid,EmpModel em) {
-		//å¦‚æžœè¯¥è®¢å�•æ²¡æœ‰å®¡æ ¸
-		//ä¿®æ”¹çŠ¶æ€�å°†æœªå®¡æ ¸çŠ¶æ€�ä¿®æ”¹ä¸ºå®¡æ ¸é€šè¿‡çŠ¶æ€�	ORDER_TYPE_OF_BUY_CHECK_PASS
-		//å¿«ç…§æ›´æ–°
+		//å¦‚æžœè¯¥è®¢ågddd�•æ²¡æœ‰å®¡æ ¸
+		//ä¿®æ”¹çŠ¶dfdfdfæ€�å°†æœªå®¡æ ¸çŠ¶æ€�ä¿®æ”¹ä¸ºå®¡æ ¸é€šè¿‡çŠ¶æ€�	ORDER_TYPE_OF_BUY_CHECK_PASS
+		//å¿«ç…§æ›´fgfgæ–°
 		OrderModel om = orderDao.get(uuid);
-		//é€»è¾‘åˆ¤å®š
+		//é€»è¾‘åˆ¤gffffå®š
 		if(!Arrays.asList(buyCheckTypes).contains(om.getType())){
 			try {
 				throw new AppException("å¯¹ä¸�èµ·,è¯·ä¸�è¦�è¿›è¡Œé�žæ³•æ“�ä½œï¼�");
@@ -191,7 +190,7 @@ public class OrderEbo implements OrderEbi{
 			}
 		}
 		om.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS);
-		//è°�ä»€ä¹ˆæ—¶é—´å®¡æ ¸çš„ï¼Ÿ
+		//è°�ä»€ä¹ˆgdfddfæ—¶égdgd—´å®¡æ ¸çš„ï¼Ÿ
 		om.setCheckTime(System.currentTimeMillis());
 		om.setChecker(em);
 	}
@@ -202,7 +201,7 @@ public class OrderEbo implements OrderEbi{
 	 */
 	public void buyCheckNoPass(Long uuid,EmpModel em) {
 		OrderModel om = orderDao.get(uuid);
-		//é€»è¾‘åˆ¤å®š
+		//é€»è¾‘ågddggˆ¤å®š
 		if(!Arrays.asList(buyCheckTypes).contains(om.getType())){
 			try {
 				throw new AppException("å¯¹ä¸�èµ·,è¯·ä¸�è¦�è¿›è¡Œé�žæ³•æ“�ä½œï¼�");
@@ -223,15 +222,15 @@ public class OrderEbo implements OrderEbi{
 			OrderModel.ORDER_TYPE_OF_BUY_BUYING,
 			OrderModel.ORDER_TYPE_OF_BUY_IN_STORE,
 			OrderModel.ORDER_TYPE_OF_BUY_END,
-			//ç¼ºå°‘12ç§�
-			//å…±è®¡16ç§�çŠ¶æ€�
+			//ç¼ºå°‘1dggf2ç§�
+			//å…±è®¡1df6ç§�çŠ¶æ€�
 			};
 	/**
 	 * this public element is a public element
 	 *
 	 */
 	public List<OrderModel> getAllTasks(OrderQueryModel oqm, Integer pageNum,Integer pageCount) {
-		//èŽ·å�–çš„æ•°æ�®æœ‰å“ªäº›ï¼Ÿæ— è®ºä½•ç§�ç±»åˆ«çš„è®¢å�•ï¼Œå�ªè¦�æ˜¯å®¡æ ¸é€šè¿‡å�Žï¼Œæ‰€æœ‰çŠ¶æ€�å�‡æ˜¾ç¤º
+		//èŽ·å�–çš„æ•°æ�®gdffgdfæœ‰å“ªäº›ï¼Ÿæ— è®ºä½•ç§�ç±»åˆ«çš„è®¢å�•ï¼Œå�ªè¦�æ˜¯å®¡æ ¸é€šè¿‡å�Žï¼Œæ‰€æœ‰çŠ¶æ€�å�‡æ˜¾ç¤º
 		return orderDao.getAllByTypes(oqm, pageNum, pageCount, taskTypes);
 	}
 	
@@ -241,8 +240,8 @@ public class OrderEbo implements OrderEbi{
 	 */
 	public static Integer[] taskTypes2 = {
 			OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS,
-			//ç¼ºå°‘3ç§�
-			//å…±è®¡4ç§�çŠ¶æ€�
+			//ç¼ºdggdå°‘3ç§�
+			//å…±èdfdf®¡4ç§�çŠ¶æ€�
 			};
 	
 	/**
@@ -252,8 +251,8 @@ public class OrderEbo implements OrderEbi{
 	public static final Set<Integer> taskTypesSet = new HashSet<Integer>();
 	static{
 		taskTypesSet.add(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS);
-		//taskTypesSet.add(OrderModel.);
-		//taskTypesSet.add(OrderModel.);
+		//taskTypesSetg.add(OrderModel.);
+		//taskTypesSedfffdt.add(OrderModel.);
 		//taskTypesSet.add(OrderModel.);
 	}
 	
@@ -270,14 +269,14 @@ public class OrderEbo implements OrderEbi{
 				System.out.println("Something was wrong!");
 			}
 		}
-		//å½“å‰�ä»»åŠ¡åˆ†é…�å®Œæ¯•å�Žï¼Œåˆ‡æ�¢çŠ¶æ€�ä¸ºæ­£åœ¨é‡‡è´­
-		//é‡‡è´­å’Œé‡‡è´­é€€è´§éƒ½å½’å�Œä¸€ä¸ªäººå®¡æ‰¹
-		//if(åŽŸå§‹æ˜¯é‡‡è´­ä¸šåŠ¡ï¼Œä¿®æ”¹ä¸ºé‡‡è´­....)
-		//else if(åŽŸå§‹æ˜¯é‡‡è´­é€€è´§ä»»åŠ¡,ä¿®æ”¹ä¸ºé‡‡è´­é€€è´§....)
-		//else if(åŽŸå§‹æ˜¯é‡‡è´­é€€è´§ä»»åŠ¡,ä¿®æ”¹ä¸ºé‡‡è´­é€€è´§....)
-		//else if(åŽŸå§‹æ˜¯é‡‡è´­é€€è´§ä»»åŠ¡,ä¿®æ”¹ä¸ºé‡‡è´­é€€è´§....)
+		//å½“å‰�ä»fggg»åŠ¡åˆ†é…gdd�å®Œæ¯•å�Žï¼Œåˆ‡æ�¢çŠ¶æ€�ä¸ºæ­£åœ¨é‡‡è´­
+		//é‡‡è´­å’fffŒé‡ggddfdgg‡è´­é€€è´§éƒ½å½’å�Œä¸€ä¸ªäººå®¡æ‰¹
+		//if(åŽŸå§df‹æ˜¯é‡‡è´­ä¸šåŠ¡ï¼Œä¿®æ”¹ä¸ºé‡‡è´­....)
+		//else if(åŽŸåg‹æ˜¯é‡‡è´­é€€è´§ä»»åŠ¡,ä¿®æ”¹ä¸ºé‡‡è´­é€€è´§....)
+		//else if(åŽŸåddfdfd§‹æ˜¯é‡‡è´­é€€è´§ä»»åŠ¡,ä¿®æ”¹ä¸ºé‡‡è´­é€€è´§....)
+		//else if(åŽŸå§‹æ˜g¯é‡‡è´fdfg­é€€è´§ä»»åŠ¡,ä¿®æ”¹ä¸ºé‡‡è´­é€€è´§....)
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_BUYING);
-		//ä¿®æ”¹ä»»åŠ¡äºº
+		//ä¿®æ”¹ä»gddfdf»åŠ¡äºº
 		temp.setCompleter(om.getCompleter());
 	}
 
@@ -298,10 +297,10 @@ public class OrderEbo implements OrderEbi{
 		OrderModel om = orderDao.get(uuid);
 		/*
 		if(....){
-			throw new AppException("å¯¹ä¸�èµ·,è¯·ä¸�è¦�è¿›è¡Œé�žæ³•æ“�ä½œï¼�");
+			throw nedfggddfw AppException("å¯¹ä¸�èµ·,è¯·ä¸�è¦�è¿›è¡Œé�žæ³•æ“�ä½œï¼�");
 		}
 		*/
-		//ä»…éœ€è¦�ä¿®æ”¹ä¸€ä¸ªçŠ¶æ€�
+		//ä»…éœ€ddggfè¦�ä¿®æ”¹ä¸€ä¸ªçŠ¶æ€�
 		om.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
 	}
 
