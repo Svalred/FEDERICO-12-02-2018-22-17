@@ -9,10 +9,10 @@ import cn.itcast.invoice.util.base.BaseDao;
 public interface DepDao extends BaseDao<DepModel> {
 }
 /*
-public voidgd save(DepModegfdgdl dm);
-public void upddgate(DepModel dm);
-public ggddfvoid delete(gdfgfdgdDepModel dm);
-publicgd DepModelgfdgfdg get(Long uuid);
-public gdffisgdft<gdDepModel> getAll(DepQueryModel dqm,Integer pageNum,Integer pageCount);
-public Integerdggdgd getCount(DepQueryModel dqm);
+public voidgdsfgs save(DepModegfdgdl dm);
+public voidfgdsdfgs upsfdgdsddgate(DepModel dm);
+public ggddfvogfsdgdgid delete(gdfgfdgdDepModel dm);
+publicgd DepModsgfsddelgfdgfdg get(Long uuid);
+public gdffissdgfgdft<gdDepModel> getAll(DepQueryModel dqm,Integer pageNum,Integer pageCount);
+public Isdfgsntegerdggdgd getCount(DepQueryModel dqm);
 */
